@@ -1,0 +1,30 @@
+{% extends 'attendance/base.html' %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Add New Student</h2>
+    <form method="post" class="p-4 shadow-sm bg-white rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" required placeholder="Enter username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" required placeholder="Enter password">
+        </div>
+        <div class="mb-3">
+            <label for="faculty" class="form-label">Faculty:</label>
+            <select class="form-select" id="faculty" name="faculty" required>
+                <option value="" selected disabled>Select faculty</option>
+                {% for faculty in faculties %}
+                    <option value="{{ faculty.id }}">{{ faculty.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-2 mt-3">Add Student</button>
+    </form>
+</div>
+{% endblock %}

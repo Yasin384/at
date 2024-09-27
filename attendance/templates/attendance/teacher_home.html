@@ -1,0 +1,12 @@
+<!-- attendance/templates/attendance/teacher_home.html -->
+{% extends 'attendance/base.html' %}
+
+{% block title %}Teacher Home{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ user.username }}</h2>
+<form method="post" action="{% url 'mark_attendance' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-lg">Mark Attendance</button>
+</form>
+{% endblock %}

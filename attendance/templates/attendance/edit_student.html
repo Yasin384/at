@@ -1,0 +1,31 @@
+{% extends 'attendance/base.html' %}
+
+{% block title %}Edit Student{% endblock %}
+
+{% block content %}
+<h2>Edit Student</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ student.user.username }}">
+    </div>
+    <div class="form-group">
+        <label for="faculty">Faculty:</label>
+        <select class="form-control" id="faculty" name="faculty">
+            {% for faculty in faculties %}
+                <option value="{{ faculty.id }}" {% if faculty.id == student.faculty.id %}selected{% endif %}>{{ faculty.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="course">Course:</label>
+        <select class="form-control" id="course" name="course">
+            {% for course in courses %}
+                <option value="{{ course.id }}" {% if course.id == student.course.id %}selected{% endif %}>{{ course.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}
